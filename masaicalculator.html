@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masai Calculator</title>
+    <style>
+   
+   #parent0{
+    height: 800px;
+    width: 700px;
+    /* border: 1px solid red; */
+    margin: auto;
+   
+   
+    
+    
+
+    
+   }
+   #parent{
+    height: 430px;
+    width: 400px;
+    /* border: 1px solid red; */
+    display: grid;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-top: 50px;
+  
+
+
+
+   }
+    #input{
+
+       height: 60px;
+       width: 305px;
+       /* border: 1px solid red; */
+       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+       border-radius: 10px;
+       margin: auto;
+       margin-bottom: 16px;
+       
+
+    }   
+
+    #calculator > div{
+        /* border: 1px solid rebeccapurple; */
+        text-align: center; 
+        line-height: 60px;  
+        font-size: 18px;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        font-weight: 1000;
+        
+
+        
+        
+        
+    }
+    #calculator {
+        display: grid;
+        grid-template-columns: repeat(4,70px);
+        grid-template-rows: repeat(4,60px);
+        gap: 10px;
+        justify-content: center;
+        
+
+    }
+   
+    .clear{
+
+        background-color: red;
+        color: white;
+    }
+    #inputbox{
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        font-size: 28px;
+        text-align: right;
+        border: 0px;
+
+        
+    
+    }
+ 
+    </style>
+
+   
+
+    
+</head>
+<body>
+    <div id="parent0">
+        <h1 style="text-align: center; margin: auto; color: teal;margin-top: 5px;">Masai Calculator</h1>
+    <div id="parent">
+    <div id="input"><input type="text" id="inputbox" placeholder="0"></div>
+    <div id="calculator">
+        <div class="number">1</div>
+        <div class="number">2</div>
+        <div class="number">3</div>
+
+        <div class="operatore" style="background-color: black; color: white;font-size: 20px;">+</div>
+
+        <div class="number">4</div>
+        <div class="number">5</div>
+        <div class="number">6</div>
+
+        <div class="operatore" style="background-color: black; color: white;font-size: 20px;">-</div>
+
+        <div class="number">7</div>
+        <div class="number">8</div>
+        <div class="number">9</div>
+
+        <div class="operatore" style="background-color: black; color: white;font-size: 20px">x</div>
+
+        <div id="clear" style="background-color: red;color: white;">C</div>
+
+        <div class="number">0</div>
+
+        <div id="equal" style="background-color: black;color: white;">=</div>
+
+        <div class="operatore" style="background-color: black; color: white;font-size: 20px">/</div>
+    </div>
+    </div>
+    </div>
+</body>
+</html>
+<script>
+    divbox = document.getElementsByClassName("number")
+    classbox = document.getElementsByClassName("operatore")
+    inputbox2 = document.getElementById("inputbox")
+    equalto = document.getElementById("equal")
+    clearall = document.getElementById("clear")
+
+    let firstnumber = ""
+    let isfirstnumber = true
+    let secondnumber = " "
+    let operatores = ""
+    
+    
+
+    
+    equalto.addEventListener('click',function(){
+
+        inputbox2.value = calculate(firstnumber,secondnumber,operatores,clearall)
+        
+    })
+    clearall.addEventListener('click',function(){
+        
+        inputbox2.value = "";
+        firstnumber = "";
+        secondnumber = "";
+        operatores = "";
+        isfirstnumber = true
+        
+    })
+
+ 
+   
+
+    for(let i = 0 ; i< divbox.length;i++){
+        divbox[i].addEventListener('click',function(){
+            if(isfirstnumber == true){
+              firstnumber += divbox[i].innerHTML
+              inputbox2.value = firstnumber
+            }
+            else{
+                secondnumber += divbox[i].innerHTML
+                inputbox2.value = secondnumber
+            }
+            
+            
+        })
+    }
+
+    for(let i = 0; i <classbox.length;i++){
+
+        classbox[i].addEventListener('click',function(){
+
+
+            isfirstnumber = false
+            operatores = classbox[i].innerText
+            inputbox2.value = operatores
+        })
+    }
+    function calculate(firstnumber,secondnumber,operatores){
+
+        switch(operatores){
+
+            case "+" :
+                return Number(firstnumber) + Number(secondnumber);
+
+                case "-" :
+                    return Number(firstnumber) - Number(secondnumber);
+
+                    case "x" :
+                        return Number(firstnumber) * Number(secondnumber);
+
+                        case "/" :
+                            return Number(firstnumber) / Number(secondnumber);
+                        
+        }
+    }
+
+
+</script>
